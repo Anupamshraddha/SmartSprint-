@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title_block %} Contact-Us {% endblock %}
+
+{% block style %}
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(/static/images/image2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+
+
+		.about-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+        }
+        .about-section {
+            background: url('your-background-image.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: black;
+            padding: 20px;
+        }
+</style>
+{% endblock %}
+{% block main_block %}
+
+	<main>
+		<div class="container">
+			<div class="about-card shadow-lg">
+		<h1 class="display-4 text-center my-5">Contact Us</h1>
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<form action="#" method="post" class="contact-form">
+						<div class="form-group mb-4">
+							<label for="username">Username</label>
+							<input type="text" id="username" name="username"  class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label for="username">Email</label>
+							<input type="email" id="username" name="username"  class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label for="subject">Subject</label>
+							<input type="text" id="subject" name="subject" required class="form-control">
+						</div>
+
+						<div class="form-group mb-4">
+							<label for="message">Message</label>
+							<textarea id="message" name="message" rows="5" required class="form-control"></textarea>
+						</div>
+
+						<button type="submit" class="btn btn-primary btn-block">Send Message</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- <div class="card-container">
+			<div class="card">
+				<h2>Contact Us</h2>
+				<p>Have questions or feedback? We'd love to hear from you!</p>
+	
+				<form action="#" method="post">
+					<div class="input-group">
+						<label for="username">Username</label>
+						<input type="text" id="username" name="username" required>
+					</div>
+					<div class="input-group">
+						<label for="subject">Subject</label>
+						<input type="text" id="subject" name="subject" required>
+					</div>
+					<div class="input-group">
+						<label for="message">Message</label>
+						<textarea id="message" name="message" rows="5" required></textarea>
+					</div>
+					<button type="submit">Send Message</button>
+				</form>
+			</div>
+		</div> -->
+
+	</main>
+
+
+
+{% endblock %}

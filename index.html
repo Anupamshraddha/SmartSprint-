@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{%block style %}
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(/static/images/image1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+    /* .about-card {
+	background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+        }
+ */
+
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+        }
+        .about-section {
+            background: url('your-background-image.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: black;
+            padding: 20px;
+        }
+
+        .company-logos {
+            text-align: center;
+            padding: 40px 0;
+        }
+        .company-logos img {
+            max-width: 120px;
+            margin: 15px;
+        }
+</style>
+{% endblock %}
+
+
+{% block main_block %}
+
+
+
+<div class="about-section">
+    <div class="about-card shadow-lg">
+<div class="container text-center my-5 ">
+    <h1 class="display-5 fw-bold my-2">Welcome to SmartSprint</h1>
+    <p class="fs-3">🚀"Race Your Mind, Rule the Game!" 🧠</p>
+    <div class="d-inline-flex gap-2 mb-5">
+        <a href="./login" class="d-inline-flex align-items-center btn btn-primary btn-lg px-4">
+            Take a quiz
+        </a>
+        <a href="./register" class="d-inline-flex align-items-center btn btn-primary btn-lg px-4" type="button">
+            Sign Up
+        </a>
+    </div>
+</div>
+</p>
+    </div></div>
+
+
+
+{% endblock %}

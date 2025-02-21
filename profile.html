@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block title_block %}Profile Page{% endblock %}
+
+{% block style %}
+<style>
+    body {
+        background-color: #f4f4f4;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .profile-container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .profile-container h2 {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .profile-info {
+        text-align: left;
+        margin-top: 20px;
+    }
+
+    .profile-info p {
+        font-size: 16px;
+        padding: 8px;
+        border-radius: 8px;
+        background: #f8f9fa;
+        margin: 10px 0;
+    }
+
+    .btn-container {
+        margin-top: 20px;
+    }
+
+    .btn-custom {
+        background: #007bff;
+        color: white;
+        border-radius: 8px;
+        padding: 10px 20px;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .btn-custom:hover {
+        background: #0056b3;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block main_block %}
+<!-- <h2>Profile of {{ current_user.name }}</h2>
+<hr>
+<div class="container">
+    <p><strong>Name:</strong> {{ current_user.name }}</p>
+    <p><strong>Email:</strong> {{ current_user.email }}</p>
+    <p><strong>Mobile:</strong> {{ current_user.mobile }}</p>
+    <p><strong>Role:</strong> {{ current_user.role }}</p>
+</div>
+<hr>
+<a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a> -->
+
+
+<div class="profile-container">
+    <h2>Profile of {{ current_user.name }}</h2>
+    <hr>
+    <div class="profile-info">
+        <p><strong>Name:</strong> {{ current_user.name }}</p>
+        <p><strong>Email:</strong> {{ current_user.email }}</p>
+        <p><strong>Mobile:</strong> {{ current_user.mobile }}</p>
+        <p><strong>Role:</strong> <span class="badge bg-success">{{ current_user.role }}</span></p>
+    </div>
+    <hr>
+    <div class="btn-container">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-custom">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

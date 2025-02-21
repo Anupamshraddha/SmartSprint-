@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+
+
+{% block title_block %}Courses{% endblock %}
+
+
+{% block style %}
+  <style>
+            body {
+            margin: 0;
+            padding: 0;
+            background-image: url(/static/images/image1.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+            .container-van{
+        display:flex;
+        flex-wrap: wrap;
+        gap:20px;
+        justify-content: space-between;
+    }
+            </style>
+
+
+{% endblock %}
+
+{% block main_block %}
+
+
+<div class="container mt-4 text-center">
+    <h1>Welcome to Courses</h1>
+</div>
+<div class="container-van">
+    <div class="card" style="width: 18rem;">
+        <img src="/static/images/img12.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Basics of HTML</h5>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('quiz1' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% else %}
+          <a href="{{ url_for('login' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/static/images/img4.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">HTML Forms</h5>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('quiz2' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% else %}
+          <a href="{{ url_for('login' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/static/images/img14.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">C++ Baics</h5>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('quiz3' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% else %}
+          <a href="{{ url_for('login' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="/static/images/img15.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Python Basics</h5>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('quiz4' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% else %}
+          <a href="{{ url_for('login' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% endif %}
+        </div>
+      </div>
+
+
+      <div class="card" style="width: 18rem;">
+        <img src="/static/images/img8.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Soft Computing</h5>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('quiz5' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% else %}
+          <a href="{{ url_for('login' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% endif %}
+        </div>
+      </div>
+
+
+      <div class="card" style="width: 18rem;">
+        <div class="img">
+        <img src="/static/images/img13.png" class="card-img-top" alt="..."></div>
+        <div class="card-body">
+          <h5 class="card-title">Introduction to AI</h5>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('quiz6' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% else %}
+          <a href="{{ url_for('login' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem; height: 18rem;">
+        <div class="img">
+        <img src="/static/images/img2.png" class="card-img-top" alt="..."></div>
+        <div class="card-body">
+          <h5 class="card-title">Digital Electronics</h5>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('quiz7' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% else %}
+          <a href="{{ url_for('login' ) }}" class="btn btn-primary">Get this quiz</a>
+          {% endif %}
+        </div>
+      </div> 
+
+
+
+{% endblock %}

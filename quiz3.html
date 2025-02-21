@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Basics - Video & Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    background-image: url(/static/images/image\ copy.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+        .video-container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .quiz-container p {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+        .incorrect {
+            color: red;
+            font-weight: bold;
+        }
+        header {
+            height: 10vh;
+        }
+
+
+        main {
+            height: 80vh;
+        }
+
+
+        footer {
+            height: 10vh;
+            background-color: rgba(28, 17, 17, 0.173);
+        }
+
+    .footer a {
+text-decoration: none;
+color: #333;
+}
+
+.footer a:hover {
+text-decoration: underline;
+}
+
+.footer h5 {
+font-weight: bold;
+}
+
+/* .about-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+        }
+        .about-section {
+            background: url('your-background-image.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: black;
+            padding: 20px;
+        } */
+        .no-scrollbar {
+    overflow: auto;  /* Allows scrolling */
+    scrollbar-width: none;  /* Hides scrollbar in Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;  /* Hides scrollbar in Chrome, Safari, Edge */
+}
+
+
+.navbar {
+            background-color: #343a40; /* Dark background */
+        }
+        .navbar-brand img {
+            height: 40px; /* Adjust logo size */
+        }
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important; /* Bootstrap info color */
+        }
+        .search-box {
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="/static/images/2.png" alt="Logo"> 
+                </a>
+        
+                <form class="d-flex mx-auto">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Credentials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('courses' ) }}">Resources</a></li>
+                        <li class="nav-item"><a href="{{ url_for('contact' ) }}" class="nav-link">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard' ) }}">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('about' ) }}">About-Us</a></li>
+                        
+                        {% if current_user.is_authenticated %}
+                        <!-- Profile Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{ url_for('profile' ) }}" id="profileDropdown" role="button" data-bs-toggle="dropdown">
+                              {{ current_user.name }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url_for('profile' ) }}">Profile</a></li>
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login' ) }}">Login</a></li>
+                        {% endif %}
+    
+                        {% if current_user.role == "admin" %}
+                        <li class="nav-item">
+                            <a href="" class="nav-link" href="{{ url_for('teacher_dashboard' ) }}">Admin</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+<div class="container mt-5">
+    <h2 class="text-center">C++ Basics - Video Lesson & Quiz</h2>
+
+    <!-- Video Section -->
+    <div class="video-container text-center mt-4">
+        <h3>Lesson: Introduction to C++</h3>
+        <div class="ratio ratio-16x9">
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/vLnPwxZdW4Y" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Quiz Section -->
+    <div class="quiz-container mt-5">
+        <h3>Quiz: Test Your C++ Knowledge</h3>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="mt-4">
+                <p>1. What is the correct syntax to output "Hello, World!" in C++?</p>
+                <input type="radio" name="q1" value="false"> print("Hello, World!");<br>
+                <input type="radio" name="q1" value="true"> std::cout << "Hello, World!";<br>
+                <input type="radio" name="q1" value="false"> Console.WriteLine("Hello, World!");<br>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="mt-4">
+                <p>2. Which data type is used to store a single character in C++?</p>
+                <input type="radio" name="q2" value="false"> string<br>
+                <input type="radio" name="q2" value="true"> char<br>
+                <input type="radio" name="q2" value="false"> int<br>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="mt-4">
+                <p>3. What is the extension of a C++ source file?</p>
+                <input type="radio" name="q3" value="false"> .cpps<br>
+                <input type="radio" name="q3" value="true"> .cpp<br>
+                <input type="radio" name="q3" value="false"> .ccp<br>
+            </div>
+
+            <!-- Submit & Back to Home Buttons (In One Line & Centered) -->
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <button type="button" class="btn btn-primary" onclick="calculateScore()">Submit</button>
+                <a href="{{ url_for('dashboard' ) }}" class="btn btn-secondary">⬅ Back to Home</a>
+            </div>
+        </form>
+
+        <!-- Quiz Score Display -->
+        <div class="mt-4">
+            <h4 id="scoreResult"></h4>
+        </div>
+    </div>
+</div>
+<footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="{{ url_for('home' ) }}" class="nav-link px-2 text-body-secondary">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+        <li class="nav-item"><a href="{{ url_for('contact' ) }}" class="nav-link px-2 text-body-secondary">Contact</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+        <li class="nav-item"><a href="{{ url_for('about' ) }}" class="nav-link px-2 text-body-secondary">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Feedback</a></li>
+    </ul>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<!-- JavaScript for Score Calculation -->
+<script>
+    function calculateScore() {
+        let score = 0;
+        
+        let answers = {
+            q1: "true",
+            q2: "true",
+            q3: "true"
+        };
+
+        for (let question in answers) {
+            let selectedOption = document.querySelector('input[name="' + question + '"]:checked');
+            
+            if (selectedOption && selectedOption.value === answers[question]) {
+                score++;
+            }
+        }
+
+        let resultText = "You scored " + score + " out of 3!";
+        document.getElementById("scoreResult").innerHTML = resultText;
+    }
+</script>
+
+</body>
+</html>

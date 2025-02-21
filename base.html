@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title_block %} {% endblock %}</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Pacifico&display=swap');
+        /* body{
+            overflow: auto;
+            scrollbar-width: none; 
+        } */
+        header {
+            height: 10vh;
+        }
+
+
+        main {
+            height: 80vh;
+        }
+
+
+        footer {
+            height: 10vh;
+            background-color: rgba(28, 17, 17, 0.173);
+        }
+
+    .footer a {
+text-decoration: none;
+color: #333;
+}
+
+.footer a:hover {
+text-decoration: underline;
+}
+
+.footer h5 {
+font-weight: bold;
+}
+
+/* .about-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 700px;
+        }
+        .about-section {
+            background: url('your-background-image.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: black;
+            padding: 20px;
+        } */
+        .no-scrollbar {
+    overflow: auto;  /* Allows scrolling */
+    scrollbar-width: none;  /* Hides scrollbar in Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;  /* Hides scrollbar in Chrome, Safari, Edge */
+}
+
+
+.navbar {
+            background-color: #343a40; /* Dark background */
+        }
+        .navbar-brand img {
+            height: 40px; /* Adjust logo size */
+        }
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important; /* Bootstrap info color */
+        }
+        .search-box {
+            max-width: 200px;
+        }
+</style>
+{% block style %}
+    
+{% endblock %}
+</head>
+
+
+<body>
+
+
+    <header>
+        <!-- <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="#">Flask Auth App</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+            </li>
+
+
+            {% if current_user.role == "admin" %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('admin')}}">Admin</a>
+            </li>
+            {% endif %}
+
+
+            {% else %}
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('register')}}">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('login')}}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+ -->
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="/static/images/2.png" alt="Logo"> 
+                </a>
+        
+                <form class="d-flex mx-auto">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('courses' ) }}">Resources</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard' ) }}">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('about' ) }}">About-Us</a></li>
+                        
+                        {% if current_user.is_authenticated %}
+                        <!-- Profile Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{ url_for('profile' ) }}" id="profileDropdown" role="button" data-bs-toggle="dropdown">
+                              {{ current_user.name }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url_for('profile' ) }}">Profile</a></li>
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login' ) }}">Login</a></li>
+                        {% endif %}
+
+                        {% if current_user.role == "admin" %}
+                        <li class="nav-item">
+                            <a href="" class="nav-link" href="{{ url_for('teacher_dashboard' ) }}">Admin</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+
+
+
+    <!-- Page Specific content -->
+    <main class="container no-scrollbar">
+
+
+
+        <!-- Flash Message Display -->
+
+
+        {% for category,messages in get_flashed_messages(with_categories=True) %}
+
+
+
+
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            {{messages}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+
+
+
+        {% endfor %}
+
+
+        {% block main_block %}
+
+
+        {% endblock %}
+
+
+    </main>
+
+
+
+
+    <!-- Footer -->
+
+
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="{{ url_for('home' ) }}" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+            <li class="nav-item"><a href="{{ url_for('contact' ) }}" class="nav-link px-2 text-body-secondary">Contact</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="{{ url_for('about' ) }}" class="nav-link px-2 text-body-secondary">About</a></li>
+            <li class="nav-item"><a href="{{ url_for('contact' ) }}" class="nav-link px-2 text-body-secondary">Feedback</a></li>
+        </ul>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+
+    {% block script %}
+
+    {% endblock%}
+</body>
+
+
+</html>
